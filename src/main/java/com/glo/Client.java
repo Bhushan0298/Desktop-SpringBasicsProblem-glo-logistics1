@@ -10,6 +10,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 public class Client {
 	public static void main(String[] args) {
 		// Initialize Spring Context
+		@SuppressWarnings("resource")
 		ApplicationContext classPathContext = new ClassPathXmlApplicationContext("spring-config.xml");
 
 		// Create Fleet object
@@ -18,7 +19,8 @@ public class Client {
         printFleetDetails(fleetFromClassPath);
 
      // Using FileSystemXmlApplicationContext
-        ApplicationContext fileSystemContext = new FileSystemXmlApplicationContext("src/main/resources/spring-config.xml");
+        @SuppressWarnings("resource")
+		ApplicationContext fileSystemContext = new FileSystemXmlApplicationContext("src/main/resources/spring-config.xml");
         
      // Create Fleet object using FileSystemXmlApplicationContext
         Fleet fleetFromFileSystem = fileSystemContext.getBean("fleet", Fleet.class);
